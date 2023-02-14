@@ -4,7 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forecast</title>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   </head>
-  <body></body>
+  <body>
+    <main>
+      <div id="container">
+        <h2 class="title">Verifique o tempo agora em:</h2>
+
+        <form>
+          <input
+            id="city-input"
+            type="text"
+            placeholder="Digite uma cidade..."
+          />
+          <button id="search-btn"><i class="bi bi-search"></i></button>
+        </form>
+
+          <div id="city">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span id="city-name">Rio de Janeiro</span>
+            <img src="https://countryflagsapi.com/png/br" alt="country flag" id="country-img"/>
+          </div>
+
+          <p id="temperature"><span>28</span>&deg; C</p>
+
+          <div id="weather-type">
+            <span id="type">Chuvoso</span>
+            <img id="img-type" src="" alt="" />
+          </p>
+
+          <span id="humidity">
+            <i class="bi bi-moisture"></i>
+            <span>40%</span>
+          </span>
+
+          <span id="wind">
+            <i class="bi bi-wind"></i>
+            <span>15km/h</span>
+          </span>
+      </div>
+    </main>
+  </body>
 </html>
