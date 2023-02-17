@@ -7,6 +7,7 @@ const searchBtn = document.querySelector("#search-btn");
 const cityName = document.querySelector("#city-name");
 const country = document.querySelector("#country-img");
 const temperature = document.querySelector("#temperature span");
+const feelsLike = document.querySelector("#feels-like span");
 const weatherType = document.querySelector("#type");
 const typeIcon = document.querySelector("#img-type");
 const humidity = document.querySelector("#humidity span");
@@ -31,6 +32,7 @@ async function showWeatherData(city) {
 
   cityName.textContent = data.name;
   temperature.textContent = parseInt(data.main.temp);
+  feelsLike.textContent = parseInt(data.main.feels_like);
   country.setAttribute("src", countryFlagURL + data.sys.country);
   weatherType.textContent = data.weather[0].description;
   typeIcon.setAttribute(
