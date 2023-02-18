@@ -42,6 +42,8 @@ async function showWeatherData(city) {
   humidity.textContent = data.main.humidity + "%";
   wind.textContent = data.wind.speed + " km/h";
 
+  document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.weather[0].description}')`;
+
   dataContainer.classList.remove("hide");
 }
 

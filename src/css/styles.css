@@ -2,6 +2,7 @@
   --primary-bg: hsl(224, 51%, 55%);
   --secondary-bg: hsl(41, 86%, 59%);
   --terciary-bg: hsl(29, 86%, 59%);
+  --light-blue: hsl(224, 59%, 74%);
   --white: hsl(0, 0%, 100%);
   --dark-gray: hsl(0, 0%, 26%);
 }
@@ -21,7 +22,11 @@
 }
 
 body {
-  background-image: linear-gradient(to bottom, var(--primary-bg), papayawhip);
+  background-image: linear-gradient(
+    to bottom,
+    var(--primary-bg),
+    var(--light-blue)
+  );
   min-height: 100vh;
   display: grid;
   place-items: center;
