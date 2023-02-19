@@ -23,7 +23,6 @@ async function getWeatherData(city) {
   const resp = await fetch(apiURL);
   const data = await resp.json();
 
-  console.log(data);
   return data;
 }
 
@@ -47,13 +46,11 @@ async function showWeatherData(city) {
     humidity.textContent = data.main.humidity + "%";
     wind.textContent = data.wind.speed + " km/h";
 
-    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.weather[0].description}')`;
+    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.name}')`;
 
     errorMsg.style.display = "none";
     dataContainer.classList.remove("hide");
   }
-
-  console.log(data.cod);
 }
 
 // Event handlers
