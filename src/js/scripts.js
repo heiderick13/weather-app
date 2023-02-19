@@ -3,6 +3,7 @@ const countryFlagURL = "https://countryflagsapi.com/png/";
 
 const cityInput = document.querySelector("#city-input");
 const searchBtn = document.querySelector("#search-btn");
+const errorMsg = document.querySelector("#error-msg");
 
 const cityName = document.querySelector("#city-name");
 const country = document.querySelector("#country-img");
@@ -28,23 +29,31 @@ async function getWeatherData(city) {
 
 async function showWeatherData(city) {
   const data = await getWeatherData(city);
-  let iconId = data.weather[0].icon;
 
-  cityName.textContent = data.name;
-  temperature.textContent = parseInt(data.main.temp);
-  feelsLike.textContent = parseInt(data.main.feels_like);
-  country.setAttribute("src", countryFlagURL + data.sys.country);
-  weatherType.textContent = data.weather[0].description;
-  typeIcon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${iconId}.png`
-  );
-  humidity.textContent = data.main.humidity + "%";
-  wind.textContent = data.wind.speed + " km/h";
+  if (data.cod == "404") {
+    errorMsg.style.display = "block";
+    dataContainer.classList.add("hide");
+  } else {
+    let iconId = data.weather[0].icon;
+    cityName.textContent = data.name;
+    temperature.textContent = parseInt(data.main.temp);
+    feelsLike.textContent = parseInt(data.main.feels_like);
+    country.setAttribute("src", countryFlagURL + data.sys.country);
+    weatherType.textContent = data.weather[0].description;
+    typeIcon.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${iconId}.png`
+    );
+    humidity.textContent = data.main.humidity + "%";
+    wind.textContent = data.wind.speed + " km/h";
 
-  document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.weather[0].description}')`;
+    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.weather[0].description}')`;
 
-  dataContainer.classList.remove("hide");
+    errorMsg.style.display = "none";
+    dataContainer.classList.remove("hide");
+  }
+
+  console.log(data.cod);
 }
 
 // Event handlers
@@ -52,6 +61,5 @@ searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   const city = cityInput.value;
-
   showWeatherData(city);
 });

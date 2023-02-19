@@ -60,6 +60,10 @@ input {
   outline: none;
 }
 
+#error-msg {
+  display: none;
+}
+
 .title {
   font-size: 20px;
   font-weight: 600;
