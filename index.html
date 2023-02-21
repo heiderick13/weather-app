@@ -13,8 +13,8 @@
     <script src="./src/js/scripts.js" defer></script>
   </head>
   <body>
-    <main>
-      <div id="container">
+    <main id="container">
+      <section id="search-form">
         <h2 class="title">Verifique o tempo agora em:</h2>
 
         <form>
@@ -26,38 +26,38 @@
           <button id="search-btn"><i class="bi bi-search"></i></button>
           <div id="error-msg">Verifique se digitou corretamente</div>
         </form>
+      </section>
 
-        <div id="city-data" class="hide">
-          <div id="city">
-            <i class="bi bi-geo"></i>
-            <span id="city-name"></span>
-            <img
-              id="country-img"
-              crossorigin="anonymous"
-              src=""
-              alt="country flag"
-            />
-          </div>
-
-          <p id="temperature"><span></span>&deg; C</p>
-          <p id="feels-like">Sensação térmica: <span></span>&deg; C</p>
-
-          <div id="weather-type">
-            <span id="type"></span>
-            <img id="img-type" src="" alt="" />
-          </div>
-
-          <span id="humidity">
-            <i class="bi bi-moisture"></i>
-            <span></span>
-          </span>
-
-          <span id="wind">
-            <i class="bi bi-wind"></i>
-            <span></span>
-          </span>
+      <section id="city-data" class="hide">
+        <div id="city">
+          <i class="bi bi-geo"></i>
+          <span id="city-name"></span>
+          <img
+            id="country-img"
+            crossorigin="anonymous"
+            src=""
+            alt="country flag"
+          />
         </div>
-      </div>
+
+        <p id="temperature"><span></span>&deg; C</p>
+        <p id="feels-like">Sensação térmica: <span></span>&deg; C</p>
+
+        <div id="weather-type">
+          <span id="type"></span>
+          <img id="img-type" src="" alt="" />
+        </div>
+
+        <span id="humidity">
+          <i class="bi bi-moisture"></i>
+          <span></span>
+        </span>
+
+        <span id="wind">
+          <i class="bi bi-wind"></i>
+          <span></span>
+        </span>
+      </section>
     </main>
   </body>
 </html>
