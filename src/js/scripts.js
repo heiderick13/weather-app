@@ -27,12 +27,8 @@ async function getWeatherData(city) {
 }
 
 async function showWeatherData(city) {
-  const data = await getWeatherData(city);
-
-  if (data.cod == "404") {
-    errorMsg.style.display = "block";
-    dataContainer.classList.add("hide");
-  } else {
+  try {
+    const data = await getWeatherData(city);
     let iconId = data.weather[0].icon;
     cityName.textContent = data.name;
     temperature.textContent = parseInt(data.main.temp);
@@ -50,6 +46,13 @@ async function showWeatherData(city) {
 
     errorMsg.style.display = "none";
     dataContainer.classList.remove("hide");
+    cityInput.value = "";
+  } catch (e) {
+    errorMsg.textContent =
+      "Ocorreu um erro ao buscar o clima. Verifique sua conexão ou se houve um erro de digitação e tente novamente.";
+    errorMsg.style.display = "block";
+    dataContainer.classList.add("hide");
+    console.log(e);
   }
 }
 

@@ -80,6 +80,11 @@ input {
   background-color: var(--terciary-bg);
 }
 
+#error-msg {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
 #city-data {
   font-size: 20px;
   line-height: 2;
