@@ -120,8 +120,14 @@ input {
   margin-right: 0.5rem;
 }
 
+#city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #country-img {
-  height: 15px;
+  height: 35px;
   margin-left: 0.5rem;
 }
 

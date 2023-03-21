@@ -1,5 +1,5 @@
 const apiKey = "dd9ec81f2d2672d352f3fbc746477d59";
-const countryFlagURL = "https://countryflagsapi.com/png/";
+// const countryFlagURL = "https://countryflagsapi.com/png/";
 
 const cityInput = document.querySelector("#city-input");
 const searchBtn = document.querySelector("#search-btn");
@@ -15,6 +15,7 @@ const humidity = document.querySelector("#humidity span");
 const wind = document.querySelector("#wind span");
 
 const dataContainer = document.querySelector("#city-data");
+const loadingElement = document.querySelector("#loading");
 
 // Functions
 async function getWeatherData(city) {
@@ -27,33 +28,52 @@ async function getWeatherData(city) {
 }
 
 async function showWeatherData(city) {
-  try {
-    const data = await getWeatherData(city);
-    let iconId = data.weather[0].icon;
-    cityName.textContent = data.name;
-    temperature.textContent = parseInt(data.main.temp);
-    feelsLike.textContent = parseInt(data.main.feels_like);
-    country.setAttribute("src", countryFlagURL + data.sys.country);
-    weatherType.textContent = data.weather[0].description;
-    typeIcon.setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${iconId}.png`
-    );
-    humidity.textContent = data.main.humidity + "%";
-    wind.textContent = data.wind.speed + " km/h";
+  showLoading();
+  const data = await getWeatherData(city)
+    .then((data) => {
+      changeData(data);
+      hideLoading();
+    })
+    .catch((e) => {
+      hideLoading();
+      errorMsg.textContent =
+        "Ocorreu um erro ao buscar o clima. Verifique sua conexão ou se houve um erro de digitação e tente novamente.";
+      errorMsg.style.display = "block";
+      dataContainer.classList.add("hide");
+      console.log(e);
+    });
+}
 
-    document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.name}')`;
+function changeData(data) {
+  let iconId = data.weather[0].icon;
+  cityName.textContent = data.name;
+  temperature.textContent = parseInt(data.main.temp);
+  feelsLike.textContent = parseInt(data.main.feels_like);
+  country.setAttribute(
+    "src",
+    `https://flagsapi.com/${data.sys.country}/flat/32.png`
+  );
+  weatherType.textContent = data.weather[0].description;
+  typeIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconId}.png`
+  );
+  humidity.textContent = data.main.humidity + "%";
+  wind.textContent = data.wind.speed + " km/h";
 
-    errorMsg.style.display = "none";
-    dataContainer.classList.remove("hide");
-    cityInput.value = "";
-  } catch (e) {
-    errorMsg.textContent =
-      "Ocorreu um erro ao buscar o clima. Verifique sua conexão ou se houve um erro de digitação e tente novamente.";
-    errorMsg.style.display = "block";
-    dataContainer.classList.add("hide");
-    console.log(e);
-  }
+  document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${data.name}')`;
+
+  errorMsg.style.display = "none";
+  dataContainer.classList.remove("hide");
+  cityInput.value = "";
+}
+
+function showLoading() {
+  loadingElement.classList.add("show");
+}
+
+function hideLoading() {
+  loadingElement.classList.remove("show");
 }
 
 // Event handlers
