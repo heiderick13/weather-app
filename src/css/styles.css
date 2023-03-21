@@ -28,8 +28,9 @@ body {
     var(--light-blue)
   );
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--white);
   font-family: "Arial", sans-serif;
 }
@@ -58,6 +59,31 @@ button {
 input {
   color: var(--dark-gray);
   outline: none;
+}
+
+#loading {
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid var(--light-blue);
+  border-top: 6px solid var(--secondary-bg);
+  border-radius: 100%;
+  margin: 1rem auto 0.5rem;
+  display: none;
+  animation: spin 1s infinite linear;
+}
+
+#loading.show {
+  display: block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #error-msg {
